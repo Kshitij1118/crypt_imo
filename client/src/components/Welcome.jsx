@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
@@ -21,7 +21,8 @@ const commonStyles =
 ); */
 
 const Welcome = () => {
-  const { connectWallet } = useContext(TransactionContext);
+  const { connectWallet, currentAccount, formData, setFormData, handleChange } =
+    useContext(TransactionContext);
 
   /* const handleSubmit = () => {}; */
   return (
@@ -35,13 +36,18 @@ const Welcome = () => {
             Explore the crypto world. Buy and sell cryptocurrencies easily on
             Crypt_imo
           </p>
-          <button
-            type="button"
-            onClick={connectWallet}
-            className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer bg-[#2546bd]"
-          >
-            <p className="text-white text-base font-semibold">Connet Wallet</p>
-          </button>
+          {!currentAccount && (
+            <button
+              type="button"
+              onClick={connectWallet}
+              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer bg-[#2546bd]"
+            >
+              <p className="text-white text-base font-semibold">
+                Connet Wallet
+              </p>
+            </button>
+          )}
+
           <div className="grid sm:grid-col-3 grid-cols-3 w-full mt-10">
             <div className={`rounded-tl-2xl ${commonStyles}`}>Reliability</div>
             <div className={commonStyles}>Secure</div>
@@ -71,30 +77,12 @@ const Welcome = () => {
           </div>
           <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
             {/* <Input
-              placeholder="Address to"
-              name="address to"
+              placeholder="Address To"
+              name="addressto"
               type="text"
-              handleChange={() => {}}
+              handleChange={handleChange}
             />
             <Input
-              placeholder="Address to"
-              name="address to"
-              type="text"
-              handleChange={() => {}}
-            />
-            <Input
-              placeholder="Address to"
-              name="address to"
-              type="text"
-              handleChange={() => {}}
-            />
-            <Input
-              placeholder="Address to"
-              name="address to"
-              type="text"
-              handleChange={() => {}}
-            /> */}
-            {/* <Input
               placeholder="Amount(ETH)"
               name="amount"
               type="text"
