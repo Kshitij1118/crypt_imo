@@ -20,11 +20,26 @@ const commonStyles =
   />
 ); */
 
-const Welcome = () => {
-  const { connectWallet, currentAccount, formData, setFormData, handleChange } =
-    useContext(TransactionContext);
 
-  /* const handleSubmit = () => {}; */
+const Welcome = () => {
+  const {
+    connectWallet,
+    currentAccount,
+    formData,
+    sendTransaction,
+    handleChange,
+  } = useContext(TransactionContext);
+
+  const handleSubmit = (e) => {
+    const { addressTo, amount, keyword, message } = formData;
+
+    e.preventDefault();
+
+    if (!addressTo || !amount || !keyword || !message) return;
+
+    sendTransaction();
+  };
+
   return (
     <div className="flex w-full justify-center items-center">
       <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
@@ -40,7 +55,7 @@ const Welcome = () => {
             <button
               type="button"
               onClick={connectWallet}
-              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer bg-[#2546bd]"
+              className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer"
             >
               <p className="text-white text-base font-semibold">
                 Connet Wallet
@@ -102,7 +117,7 @@ const Welcome = () => {
             /> */}
 
             <div className="h-[1px] w-full bg-grey-400 my-2">
-              {/* {true ? (
+              {true ? (
                 <Loader />
               ) : (
                 <button
@@ -113,7 +128,7 @@ const Welcome = () => {
                   {" "}
                   Send Now
                 </button>
-              )} */}
+              )}
             </div>
           </div>
         </div>
