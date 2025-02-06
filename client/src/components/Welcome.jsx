@@ -5,7 +5,7 @@ import { BsInfoCircle } from "react-icons/bs";
 
 import { TransactionContext } from "../context/TransactionContext";
 import { Loader } from "./";
-import { shortenAddress } from '../utils/shortenAddress';
+import { shortenAddress } from "../utils/shortenAddress";
 
 const commonStyles =
   "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -28,6 +28,7 @@ const Welcome = () => {
     formData,
     sendTransaction,
     handleChange,
+    isLoading,
   } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
@@ -117,7 +118,7 @@ const Welcome = () => {
             /> */}
 
             <div className="h-[1px] w-full bg-grey-400 my-2">
-              {true ? (
+              {isLoading ? (
                 <Loader />
               ) : (
                 <button
@@ -125,7 +126,6 @@ const Welcome = () => {
                   onClick={handleSubmit}
                   className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
                 >
-                  {" "}
                   Send Now
                 </button>
               )}
