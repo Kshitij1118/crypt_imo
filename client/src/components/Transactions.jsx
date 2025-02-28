@@ -6,7 +6,6 @@ import dummyData from "../utils/dummyData";
 import { shortenAddress } from "../utils/shortenAddress";
 import useFetch from "../hooks/useFetch";
 
-
 const TransactionCard = ({
   addressTo,
   addressFrom,
